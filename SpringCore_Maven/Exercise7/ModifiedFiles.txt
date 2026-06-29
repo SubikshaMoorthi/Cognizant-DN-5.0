@@ -16,7 +16,10 @@
     <bean id="bookService"
           class="com.library.service.BookService">
 
-        <property name="bookRepository" ref="bookRepository"/>
+        <constructor-arg ref="bookRepository"/>
+
+        <property name="bookRepository"
+                  ref="bookRepository"/>
 
     </bean>
 
@@ -33,8 +36,14 @@ public class BookService {
 
     private BookRepository bookRepository;
 
+    public BookService(BookRepository bookRepository) {
+        this.bookRepository = bookRepository;
+        System.out.println("Constructor Injection Successful");
+    }
+
     public void setBookRepository(BookRepository bookRepository) {
         this.bookRepository = bookRepository;
+        System.out.println("Setter Injection Successful");
     }
 
     public void display() {
